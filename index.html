@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+    <style>
+        @font-face {
+            font-family: Uncut Sans;
+            src: url(UncutSans-Variable.ttf);
+        }
+        body {
+            font-family: Uncut Sans, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .entry {
+            border: 1px solid #ccc;
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .date {
+            font-weight: bold;
+            color: #333;
+        }
+        .title {
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+        .paragraph {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div id="entries"></div>
+
+    <script>
+        // Fetch the JSON file containing journal entries
+        fetch('entries.json')
+            .then(response => response.json())
+            .then(data => {
+                const entriesContainer = document.getElementById('entries');
+                data.forEach(entry => {
+                    const entryElement = document.createElement('div');
+                    entryElement.classList.add('entry');
+                    
+                    const dateElement = document.createElement('div');
+                    dateElement.classList.add('date');
+                    dateElement.textContent = entry.date;
+
+                    const titleElement = document.createElement('div');
+                    titleElement.classList.add('title');
+                    titleElement.textContent = entry.title;
+
+                    const paragraphElement = document.createElement('div');
+                    paragraphElement.classList.add('paragraph');
+                    paragraphElement.textContent = entry.paragraph;
+
+                    entryElement.appendChild(dateElement);
+                    entryElement.appendChild(titleElement);
+                    entryElement.appendChild(paragraphElement);
+
+                    entriesContainer.appendChild(entryElement);
+                });
+            })
+            .catch(error => console.error('Error loading the JSON file:', error));
+    </script>
+
+</body>
+</html>
