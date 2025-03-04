@@ -14,6 +14,10 @@
             line-height: 1.6;
             margin: 20px;
         }
+        .blog {
+            max-width: 500px;
+            
+        }
         .entry {
             border: 1px solid #ccc;
             margin: 20px 0;
@@ -36,8 +40,7 @@
     </style>
 </head>
 <body>
-    <div id="entries"></div>
-
+    <div class="blog" id="entries"></div>
     <script>
         // Fetch the JSON file containing journal entries
         fetch('entries.json')
